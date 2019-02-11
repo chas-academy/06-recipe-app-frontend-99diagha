@@ -1,0 +1,34 @@
+$font-stack: 'Montserrat', sans-serif;
+
+.card {
+  .header {
+    position: relative;
+
+    img {
+      width: 100%;
+      border-radius: 4px;
+    }
+    p {
+      position: absolute;
+      bottom: 0;
+      right: 8px;
+      padding: 2px 5px;
+      border-radius: 4px;
+      background-color: white;
+      font-family: $font-stack;
+      font-size: 14px;
+    }
+  }
+
+  .content {
+    h1 {
+      font-family: $font-stack;
+      font-size: 15px;
+    }
+    p {
+      font-family: $font-stack;
+      font-size: 12px;
+      line-height: 0;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-sm-6 col-lg-3 mb-4" *ngFor="let recipe of recipes">
+    <app-recipe [id]="recipe.id"
+                     [recipeName]="recipe.recipeName"
+                     [sourceDisplayName]="recipe.sourceDisplayName"
+                     [imageUrl]="recipe.smallImageUrls[0].slice(0, -3) + 's680-c-rj-v1-e365'"
+                     [totalTimeInSeconds]="recipe.totalTimeInSeconds"></app-recipe>
+  </div>
+</div>
