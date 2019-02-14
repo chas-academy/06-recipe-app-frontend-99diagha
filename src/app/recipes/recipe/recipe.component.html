@@ -1,6 +1,8 @@
 <div class="card">
   <div class="header">
-    <img [src]="imageUrl" alt="">
+    <a routerLink="/recipe/{{id}}">
+      <img [src]="imageUrl" alt="">
+    </a>
     <p>{{ totalTimeInSeconds / 60 }} min</p>
   </div>
   <div class="content">

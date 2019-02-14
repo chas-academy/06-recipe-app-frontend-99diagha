@@ -15,10 +15,7 @@ export class RecipeService {
       .set('X-Yummly-App-ID', this.API_ID)
       .set('X-Yummly-App-Key', this.API_KEY);
 
-    return this.http.get('http://api.yummly.com/v1/api/recipe/' + id, {headers})
-      .subscribe(response => {
-        console.log(response);
-      });
+    return this.http.get(`http://api.yummly.com/v1/api/recipe/${id}`, {headers});
   }
 
   getRecipes(page = '0') {
@@ -26,6 +23,7 @@ export class RecipeService {
       .set('X-Yummly-App-ID', this.API_ID)
       .set('X-Yummly-App-Key', this.API_KEY);
     const params = new HttpParams()
+      .set('requirePictures', 'true')
       .set('maxResult', '20')
       .set('start', page);
 

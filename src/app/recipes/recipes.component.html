@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="recipes">
   <div class="col-sm-6 col-lg-3 mb-4" *ngFor="let recipe of recipes">
     <app-recipe [id]="recipe.id"
                      [recipeName]="recipe.recipeName"
