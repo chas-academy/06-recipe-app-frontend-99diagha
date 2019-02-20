@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+import { Recipe } from './recipe.model';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,23 +14,38 @@ export class RecipeService {
 
   constructor(private http: HttpClient) { }
 
-  getRecipe(id: string) {
+  read(id: number): Observable<Recipe> {
     const headers = new HttpHeaders()
       .set('X-Yummly-App-ID', this.API_ID)
       .set('X-Yummly-App-Key', this.API_KEY);
 
-    return this.http.get(`http://api.yummly.com/v1/api/recipe/${id}`, {headers});
+    return this.http.get<Recipe>(`http://api.yummly.com/v1/api/recipe/${id}`, {headers});
   }
 
-  getRecipes(page = '0') {
+  list(page = 0): Observable<Recipe[]> {
     const headers = new HttpHeaders()
       .set('X-Yummly-App-ID', this.API_ID)
       .set('X-Yummly-App-Key', this.API_KEY);
     const params = new HttpParams()
       .set('requirePictures', 'true')
       .set('maxResult', '20')
-      .set('start', page);
+      .set('start', Math.floor(page / 20).toString());
 
-    return this.http.get('http://api.yummly.com/v1/api/recipes', {headers, params});
+    return this.http.get('http://api.yummly.com/v1/api/recipes', {headers, params}).pipe(
+      map((data: any) =>
+        data.matches.map((recipe: any) =>
+          new Recipe({
+            id: recipe.id,
+            name: recipe.recipeName,
+            source: {
+              displayName: recipe.sourceDisplayName,
+              recipeUrl: ''
+            },
+            imageUrl: recipe.smallImageUrls[0],
+            duration: recipe.totalTimeInSeconds
+          })
+        )
+      )
+    );
   }
 }
