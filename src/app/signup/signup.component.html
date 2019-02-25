@@ -1,0 +1,19 @@
+<h2>Sign up</h2>
+<form (ngSubmit)="onSubmit()" ngNativeValidate>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" placeholder="Name" required [(ngModel)]="name" name="name"/>
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="text" class="form-control" id="email" placeholder="Email" required [(ngModel)]="email" name="email"/>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="text" class="form-control" id="password" placeholder="Password" required [(ngModel)]="password" name="password"/>
+  </div>
+  <div class="form-group">
+    <button type="submit" [disabled]="loading" class="btn btn-primary">Sign up</button>
+    <a [routerLink]="['/signin']" class="btn btn-link">Cancel</a>
+  </div>
+</form>

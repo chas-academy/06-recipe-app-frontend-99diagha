@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 
-import { Recipe } from '../recipe.model';
-import { RecipeService } from '../recipe.service';
+import { Recipe } from '../models/recipe.model';
+import { RecipeService } from '../services/recipe.service';
 
 @Component({
   selector: 'app-recipe-details',
@@ -14,24 +13,23 @@ export class RecipeDetailsComponent implements OnInit {
   private recipe: Recipe;
 
   constructor(private route: ActivatedRoute,
-              private location: Location,
               private recipeService: RecipeService) { }
 
   ngOnInit() {
     const id = this.route.snapshot.params.id;
 
-    this.recipeService.read(id).subscribe((data: any) => {
+    this.recipeService.read(id).subscribe((response: any) => {
       this.recipe = new Recipe({
-        id: data.id,
-        name: data.name,
+        id: response.id,
+        name: response.name,
         source: {
-          displayName: data.source['sourceDisplayName'],
-          recipeUrl: data.source['sourceRecipeUrl']
+          displayName: response.source['sourceDisplayName'],
+          recipeUrl: response.source['sourceRecipeUrl']
         },
-        imageUrl: data.images[0].hostedSmallUrl,
-        ingredients: data.ingredientLines,
-        servings: data.numberOfServings,
-        duration: data.totalTime
+        imageUrl: response.images[0].hostedSmallUrl,
+        ingredients: response.ingredientLines,
+        servings: response.numberOfServings,
+        duration: response.totalTime
       });
     });
   }

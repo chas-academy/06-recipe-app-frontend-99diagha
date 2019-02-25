@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { Recipe } from './recipe.model';
+import { Recipe } from '../models/recipe.model';
 import {map} from 'rxjs/operators';
 
 @Injectable({
@@ -32,8 +32,8 @@ export class RecipeService {
       .set('start', Math.floor(page / 20).toString());
 
     return this.http.get('http://api.yummly.com/v1/api/recipes', {headers, params}).pipe(
-      map((data: any) =>
-        data.matches.map((recipe: any) =>
+      map((response: any) =>
+        response.matches.map((recipe: any) =>
           new Recipe({
             id: recipe.id,
             name: recipe.recipeName,
@@ -45,7 +45,6 @@ export class RecipeService {
             duration: recipe.totalTimeInSeconds
           })
         )
-      )
-    );
+      ));
   }
 }
