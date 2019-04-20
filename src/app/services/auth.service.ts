@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
-import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +28,7 @@ export class AuthService {
   }
 
   private setSession(response) {
-    const expiresAt = moment(response.expires_at);
+    const expiresAt = '';
 
     localStorage.setItem('access_token', response.access_token);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
@@ -51,12 +50,12 @@ export class AuthService {
   }
 
   isSignedIn() {
-    return moment().isBefore(this.getExpiration());
+    return false;
   }
 
   private getExpiration() {
     const expiration = localStorage.getItem('expires_at');
     const expiresAt = JSON.parse(expiration);
-    return moment(expiresAt);
+    return '';
   }
 }

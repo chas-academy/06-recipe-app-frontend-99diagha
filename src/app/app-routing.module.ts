@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { RecipesComponent } from './recipes/recipes.component';
-import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
+import { RecipeListComponent } from './recipe-list/recipe-list.component';
+import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
 
 const routes: Routes = [
-  { path: '', component: RecipesComponent },
-  { path: 'recipe/:id', component: RecipeDetailsComponent },
+  { path: '', component: RecipeListComponent },
+  { path: 'recipe-item/:id', component: RecipeDetailComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'signin', component: SigninComponent }
 ];

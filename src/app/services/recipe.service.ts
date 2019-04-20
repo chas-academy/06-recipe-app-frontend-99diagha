@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Recipe } from '../models/recipe.model';
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -23,13 +23,14 @@ export class RecipeService {
   }
 
   list(page = 0): Observable<Recipe[]> {
+    console.log(page);
     const headers = new HttpHeaders()
       .set('X-Yummly-App-ID', this.API_ID)
       .set('X-Yummly-App-Key', this.API_KEY);
     const params = new HttpParams()
       .set('requirePictures', 'true')
       .set('maxResult', '20')
-      .set('start', Math.floor(page / 20).toString());
+      .set('start', page.toString());
 
     return this.http.get('http://api.yummly.com/v1/api/recipes', {headers, params}).pipe(
       map((response: any) =>

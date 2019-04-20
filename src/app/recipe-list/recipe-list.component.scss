@@ -1,0 +1,19 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+.recipe-list {
+  @include make-row();
+}
+
+.recipe-item {
+  @include make-col-ready;
+  margin-bottom: 24px;
+
+  @include media-breakpoint-up(sm) {
+    @include make-col(6);
+  }
+  @include media-breakpoint-up(lg) {
+    @include make-col(3);
+  }
+}
