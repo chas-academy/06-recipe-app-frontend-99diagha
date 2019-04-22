@@ -1,15 +1,4 @@
-<!--  <nav class="navbar navbar-dark bg-dark">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">Home</a>
-      </li>
-    </ul>
-    <div *ngIf="!isSignedIn()">
-      <a [routerLink]="['/signin']" class="btn btn-primary">Sign in</a>
-      <a [routerLink]="['/signup']" class="btn btn-outline-primary">Sign up</a>
-    </div>
-    <a *ngIf="isSignedIn()" (click)="signout()" class="btn btn-primary">Sign out</a>
-  </nav>-->
+<app-navbar></app-navbar>
 <div class="container">
   <router-outlet></router-outlet>
 </div>

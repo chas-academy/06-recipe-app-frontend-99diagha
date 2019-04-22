@@ -1,0 +1,32 @@
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">Register</div>
+      <div class="card-body">
+        <form (ngSubmit)="onSubmit()" ngNativeValidate>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" required [(ngModel)]="form.name" name="name"/>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" required [(ngModel)]="form.email" name="email"/>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" required [(ngModel)]="form.password" name="password"/>
+          </div>
+          <div class="form-group">
+            <label for="password_confirm">Confirm password</label>
+            <input type="password" class="form-control" id="password_confirm" required [(ngModel)]="form.password_confirmation" name="password_confirmation"/>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">Register</button>
+            <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

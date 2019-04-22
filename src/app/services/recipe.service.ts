@@ -23,7 +23,6 @@ export class RecipeService {
   }
 
   list(page = 0): Observable<Recipe[]> {
-    console.log(page);
     const headers = new HttpHeaders()
       .set('X-Yummly-App-ID', this.API_ID)
       .set('X-Yummly-App-Key', this.API_KEY);
@@ -42,8 +41,7 @@ export class RecipeService {
               displayName: recipe.sourceDisplayName,
               recipeUrl: ''
             },
-            imageUrl: recipe.smallImageUrls[0],
-            duration: recipe.totalTimeInSeconds
+            imageUrl: recipe.smallImageUrls[0]
           })
         )
       ));

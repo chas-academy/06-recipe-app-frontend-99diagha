@@ -6,20 +6,22 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NavbarComponent } from './navbar/navbar.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { RecipeItemComponent } from './recipe-list/recipe-item/recipe-item.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
-import { SigninComponent } from './signin/signin.component';
-import { SignupComponent } from './signup/signup.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    NavbarComponent,
     RecipeListComponent,
     RecipeItemComponent,
     RecipeDetailComponent,
-    SigninComponent,
-    SignupComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

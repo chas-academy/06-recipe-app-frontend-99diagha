@@ -12,13 +12,9 @@ export class AppComponent {
   constructor(private router: Router,
               private authService: AuthService) { }
 
-  isSignedIn() {
-    return this.authService.isSignedIn();
-  }
-
   signout() {
     console.log('hi');
-    this.authService.signout();
+    this.authService.logout();
     this.router.navigate(['/']);
   }
 }

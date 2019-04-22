@@ -3,14 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
-import { SignupComponent } from './signup/signup.component';
-import { SigninComponent } from './signin/signin.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
   { path: '', component: RecipeListComponent },
   { path: 'recipe-item/:id', component: RecipeDetailComponent },
-  { path: 'signup', component: SignupComponent },
-  { path: 'signin', component: SigninComponent }
+  { path: 'register', component: RegisterComponent, canActivate: [AuthGuardService] },
+  { path: 'login', component: LoginComponent, canActivate: [AuthGuardService] }
 ];
 
 @NgModule({

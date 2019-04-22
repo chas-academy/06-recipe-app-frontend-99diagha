@@ -1,47 +1,46 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private loggedIn = new BehaviorSubject<boolean>(this.isValid());
+  authStatus = this.loggedIn.asObservable();
 
   constructor(private http: HttpClient) { }
 
-  signup(name: string, email: string, password: string) {
-    const body = {
-      name,
-      email,
-      password
-    };
-    return this.http.post('http://homestead.test/api/signup', body);
+  register(data) {
+    return this.http.post('http://homestead.test/api/register', data);
   }
 
-  signin(email: string, password: string) {
-    const body = {
-      email,
-      password
-    };
-    return this.http.post('http://homestead.test/api/signin', body).pipe(
-      tap(response => this.setSession(response)));
+  login(data) {
+    return this.http.post('http://homestead.test/api/login', data).pipe(
+      tap(response => {
+        this.setSession(response);
+        this.changeAuthStatus(true);
+      }));
   }
 
-  private setSession(response) {
-    const expiresAt = '';
-
-    localStorage.setItem('access_token', response.access_token);
-    localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
-  }
-
-  signout() {
+  logout() {
     const accessToken = localStorage.getItem('access_token');
-
     const headers = new HttpHeaders()
       .set('Authorization', 'Bearer ' + accessToken);
 
-    return this.http.get('http://homestead.test/api/signout', {headers}).pipe(
-      tap(() => this.removeSession())).subscribe();
+    return this.http.get('http://homestead.test/api/logout', {headers}).subscribe(() => {
+      this.removeSession();
+      this.changeAuthStatus(false);
+    });
+  }
+
+  private setSession(response) {
+    const expiresAt = moment(response.expires_at);
+
+    localStorage.setItem('access_token', response.access_token);
+    localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
   }
 
   private removeSession() {
@@ -49,13 +48,17 @@ export class AuthService {
     localStorage.removeItem('expires_at');
   }
 
-  isSignedIn() {
-    return false;
+  private changeAuthStatus(value: boolean) {
+    this.loggedIn.next(value);
+  }
+
+  isValid() {
+    return moment().isBefore(this.getExpiration());
   }
 
   private getExpiration() {
     const expiration = localStorage.getItem('expires_at');
     const expiresAt = JSON.parse(expiration);
-    return '';
+    return moment(expiresAt);
   }
 }

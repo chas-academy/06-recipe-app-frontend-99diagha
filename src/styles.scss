@@ -1,11 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500');
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
 
-@import "~bootstrap/scss/bootstrap-grid.scss";
+@import "~bootstrap/scss/bootstrap";
 
 body {
-  background-color: #141d26;
-  color: white;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Nunito", sans-serif;
 }
 
 img {

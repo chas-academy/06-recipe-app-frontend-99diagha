@@ -1,24 +1,37 @@
-<div class="row mt-5" *ngIf="recipe">
-  <section class="col-6 offset-1">
-    <h1>{{recipe.name}}</h1>
-    <p>{{recipe.source['displayName'] | uppercase}}</p>
-    <section class="d-flex">
-      <p>{{recipe.ingredients.length}} ingredients</p>
-      <p>{{recipe.duration}}</p>
-    </section>
-    <a [href]="recipe.source['recipeUrl']"
-       target="_blank"
-       rel="noopener noreferrer"
-       aria-label="Read Directions">Read Directions</a>
-  </section>
-  <div class="col-5">
+<div class="wrapper" *ngIf="recipe">
+  <div class="image">
     <img [src]="(recipe.imageUrl | slice:0:-3) + 's680-c-rj-v1-e365'" alt="">
   </div>
-  <div class="col-10 offset-2">
-    <p>{{recipe.servings}} servings</p>
-    <h2>Ingredients</h2>
+  <section class="info">
+    <h2 class="name">{{recipe.name}}</h2>
+    <p>{{recipe.source['displayName'] | uppercase}}</p>
+    <div class="summary">
+      <div>
+        <span class="value">{{recipe.ingredients.length}}</span>
+        <span class="unit">Ingredients</span>
+      </div>
+      <div>
+        <span class="value">{{recipe.duration / 60}}</span>
+        <span class="unit">Minutes</span>
+      </div>
+      <div>
+        <span class="value">{{recipe.servings}}</span>
+        <span class="unit">Servings</span>
+      </div>
+    </div>
+    <form action="" *ngIf="loggedIn">
+      <button type="submit" class="btn btn-primary">Save this recipe</button>
+    </form>
+  </section>
+  <section class="ingredients">
+    <h4>Ingredients</h4>
+    <a class="read-directions"
+       [href]="recipe.source['recipeUrl']"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="Read directions">Read directions</a>
     <ul>
       <li *ngFor="let ingredient of recipe.ingredients">{{ingredient}}</li>
     </ul>
-  </div>
+  </section>
 </div>
