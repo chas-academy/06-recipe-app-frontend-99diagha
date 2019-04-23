@@ -1,5 +1,5 @@
 export class Recipe {
-  id: number;
+  id: string;
   name: string;
   source: {
     displayName: string,

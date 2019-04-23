@@ -19,7 +19,7 @@
         <span class="unit">Servings</span>
       </div>
     </div>
-    <form action="" *ngIf="loggedIn">
+    <form (ngSubmit)="onSubmit()" *ngIf="loggedIn">
       <button type="submit" class="btn btn-primary">Save this recipe</button>
     </form>
   </section>

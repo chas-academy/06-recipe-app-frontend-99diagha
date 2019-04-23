@@ -2,11 +2,10 @@
   <div class="recipe-item" *ngFor="let recipe of recipes">
     <app-recipe-item [recipe]="recipe"></app-recipe-item>
   </div>
-
   <div
     infiniteScroll
     [infiniteScrollDistance]="2"
     [infiniteScrollThrottle]="200"
-    (scrolled)="onScroll()"
+    (scrolled)="_onScroll()"
   ></div>
 </div>

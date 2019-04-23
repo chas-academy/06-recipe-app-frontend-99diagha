@@ -1,28 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Recipe } from '../models/recipe.model';
-import { RecipeService } from '../services/recipe.service';
 
 @Component({
   selector: 'app-recipe-list',
   templateUrl: './recipe-list.component.html',
   styleUrls: ['./recipe-list.component.scss']
 })
-export class RecipeListComponent implements OnInit {
-  private recipes: Recipe[];
+export class RecipeListComponent {
+  @Input() private recipes: Recipe[];
+  @Output() scrolled = new EventEmitter();
 
-  constructor(private recipeService: RecipeService) { }
+  constructor() { }
 
-  ngOnInit() {
-    this.recipeService.list().subscribe(response => {
-      this.recipes = response;
-    });
-  }
-
-  onScroll() {
-    const page = this.recipes.length + 1;
-    this.recipeService.list(page).subscribe(response => {
-      this.recipes = this.recipes.concat(response);
-    });
+  _onScroll() {
+    this.scrolled.emit();
   }
 }
