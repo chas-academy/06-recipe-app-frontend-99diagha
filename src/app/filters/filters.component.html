@@ -1,0 +1,40 @@
+<div>
+  <h5>Course</h5>
+  <sui-select
+    class="selection mb-4"
+    [(ngModel)]="selectedCourse"
+    (ngModelChange)="changed.next({target: 'course', payload: $event})"
+    [options]="courses"
+    labelField="name"
+    valueField="value"
+    #courseSelect
+  >
+    <sui-select-option *ngFor="let o of courseSelect.filteredOptions" [value]="o"></sui-select-option>
+  </sui-select>
+</div>
+<div>
+  <h5>Allergens</h5>
+  <sui-multi-select
+    class="selection mb-4"
+    (selectedOptionsChange)="changed.next({target: 'allergens', payload: $event})"
+    [options]="allergens"
+    labelField="name"
+    valueField="value"
+    #allergensSelect
+  >
+    <sui-select-option *ngFor="let o of allergensSelect.filteredOptions" [value]="o"></sui-select-option>
+  </sui-multi-select>
+</div>
+<div>
+  <h5>Diets</h5>
+  <sui-multi-select
+    class="selection mb-4"
+    (selectedOptionsChange)="changed.next({target: 'diets', payload: $event})"
+    [options]="diets"
+    labelField="name"
+    valueField="value"
+    #dietsSelect
+  >
+    <sui-select-option *ngFor="let o of dietsSelect.filteredOptions" [value]="o"></sui-select-option>
+  </sui-multi-select>
+</div>

@@ -13,7 +13,6 @@ import { SavedService } from '../services/saved.service';
 })
 export class RecipeDetailComponent implements OnInit {
   private recipe: Recipe;
-  private saved: boolean;
   private loggedIn: boolean;
 
   constructor(private route: ActivatedRoute,

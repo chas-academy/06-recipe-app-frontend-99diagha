@@ -6,6 +6,6 @@
     infiniteScroll
     [infiniteScrollDistance]="2"
     [infiniteScrollThrottle]="200"
-    (scrolled)="_onScroll()"
+    (scrolled)="scrolled.emit()"
   ></div>
 </div>

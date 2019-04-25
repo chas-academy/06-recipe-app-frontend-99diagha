@@ -9,11 +9,7 @@ import { Recipe } from '../models/recipe.model';
 })
 export class RecipeListComponent {
   @Input() private recipes: Recipe[];
-  @Output() scrolled = new EventEmitter();
+  @Output() private scrolled = new EventEmitter();
 
   constructor() { }
-
-  _onScroll() {
-    this.scrolled.emit();
-  }
 }

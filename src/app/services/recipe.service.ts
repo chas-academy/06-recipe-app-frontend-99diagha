@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -23,13 +23,8 @@ export class RecipeService {
     return this.http.get<Recipe>(`http://api.yummly.com/v1/api/recipe/${id}`, {headers: this.headers});
   }
 
-  index(page = 0): Observable<Recipe[]> {
-    const params = new HttpParams()
-      .set('requirePictures', 'true')
-      .set('maxResult', '20')
-      .set('start', page.toString());
-
-    return this.http.get('http://api.yummly.com/v1/api/recipes', {headers: this.headers, params}).pipe(
+  index(page, course = '', allergens = '', diets = ''): Observable<Recipe[]> {
+    return this.http.get(`http://api.yummly.com/v1/api/recipes?requirePictures=true&maxResult=20&start=${page}&allowedCourse[]=${course}&allowedAllergy[]=${allergens}&allowedDiet[]=${diets}`, {headers: this.headers}).pipe(
       map((response: any) =>
         response.matches.map((recipe: any) =>
           new Recipe({
