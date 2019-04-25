@@ -1,4 +1,6 @@
 .recipe {
+  animation: fade-in 2s;
+
   .image {
     width: 100%;
     border-radius: 4px;
@@ -14,4 +16,9 @@
       color: #8899a6;
     }
   }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
