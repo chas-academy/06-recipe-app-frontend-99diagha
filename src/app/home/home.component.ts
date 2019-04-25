@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
 
   private onScroll() {
     const page = this.recipes.length + 1;
-    this.recipeService.index(page).subscribe(response => {
+    this.recipeService.index(page, this.course, this.allergens, this.diets).subscribe(response => {
       this.recipes = [...this.recipes, ...response];
     });
   }
