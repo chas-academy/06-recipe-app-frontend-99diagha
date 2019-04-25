@@ -10,6 +10,9 @@ import { RecipeService } from '../services/recipe.service';
 })
 export class HomeComponent implements OnInit {
   private recipes: Recipe[];
+  private course: string;
+  private allergens: string;
+  private diets: string;
 
   constructor(private recipeService: RecipeService) { }
 
@@ -20,24 +23,19 @@ export class HomeComponent implements OnInit {
   }
 
   private onFilter({target, payload}) {
-    let course;
-    let allergens;
-    let diets;
-    console.log({target, payload});
-
     switch (target) {
       case 'course':
-        course = payload;
+        this.course = payload;
         break;
       case 'allergens':
-        allergens = payload.join('&allowedAllergy[]=');
+        this.allergens = payload.join('&allowedAllergy[]=');
         break;
       case 'diets':
-        diets = payload.join('&allowedDiet[]=');
+        this.diets = payload.join('&allowedDiet[]=');
         break;
     }
 
-    this.recipeService.index(0, course, allergens, diets).subscribe(response => {
+    this.recipeService.index(0, this.course, this.allergens, this.diets).subscribe(response => {
       this.recipes = response;
     });
   }
