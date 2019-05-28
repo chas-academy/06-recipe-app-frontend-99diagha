@@ -9,10 +9,10 @@ import { RecipeService } from '../services/recipe.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  private recipes: Recipe[];
-  private course: string;
-  private allergens: string;
-  private diets: string;
+  recipes: Recipe[];
+  course: string;
+  allergens: string;
+  diets: string;
 
   constructor(private recipeService: RecipeService) { }
 
@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  private onFilter({target, payload}) {
+  onFilter({target, payload}) {
     switch (target) {
       case 'course':
         this.course = payload;
@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  private onScroll() {
+  onScroll() {
     const page = this.recipes.length + 1;
     this.recipeService.index(page, this.course, this.allergens, this.diets).subscribe(response => {
       this.recipes = [...this.recipes, ...response];

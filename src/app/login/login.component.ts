@@ -9,11 +9,11 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  private form = {
+  form = {
     email: null,
     password: null,
   };
-  private error = [];
+  error = [];
 
   constructor(private router: Router,
               private authService: AuthService) {
@@ -23,6 +23,7 @@ export class LoginComponent {
     this.authService.login(this.form).subscribe(() => {
         this.router.navigate(['/']);
       }, error => {
+        console.log(error);
         this.error = error.error.errors;
       });
   }

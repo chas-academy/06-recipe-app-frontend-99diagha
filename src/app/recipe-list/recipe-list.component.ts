@@ -8,8 +8,8 @@ import { Recipe } from '../models/recipe.model';
   styleUrls: ['./recipe-list.component.scss']
 })
 export class RecipeListComponent {
-  @Input() private recipes: Recipe[];
-  @Output() private scrolled = new EventEmitter();
+  @Input() recipes: Recipe[];
+  @Output() scrolled = new EventEmitter();
 
   constructor() { }
 }

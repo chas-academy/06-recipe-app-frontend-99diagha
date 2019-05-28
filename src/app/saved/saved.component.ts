@@ -9,7 +9,7 @@ import { SavedService } from '../services/saved.service';
   styleUrls: ['./saved.component.scss']
 })
 export class SavedComponent implements OnInit {
-  private recipes: Recipe[];
+  recipes: Recipe[];
 
   constructor(private savedService: SavedService) { }
 

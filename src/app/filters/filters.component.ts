@@ -6,14 +6,14 @@ import {Component, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./filters.component.scss']
 })
 export class FiltersComponent {
-  private selectedCourse = '';
-  private courses = [
+  selectedCourse = '';
+  courses = [
     {name: 'All', value: ''},
     {name: 'Appetizers', value: 'course^course-Appetizers'},
     {name: 'Main-Dishes', value: 'course^course-Main Dishes'},
     {name: 'Desserts', value: 'course^course-Desserts'},
   ];
-  private allergens = [
+  allergens = [
     {name: 'Dairy-Free', value: '396^Dairy-Free'},
     {name: 'Egg-Free', value: '397^Egg-Free'},
     {name: 'Gluten-Free', value: '393^Gluten-Free'},
@@ -25,7 +25,7 @@ export class FiltersComponent {
     {name: 'Tree Nut-Free', value: '395^Tree Nut-Free'},
     {name: 'Wheat-Free', value: '392^Wheat-Free'}
   ];
-  private diets = [
+  diets = [
     {name: 'Ketogenic', value: '406^Ketogenic'},
     {name: 'Lacto vegetarian', value: '388^Lacto vegetarian'},
     {name: 'Ovo vegetarian', value: '389^Ovo vegetarian'},
@@ -35,7 +35,7 @@ export class FiltersComponent {
     {name: 'Lacto-ovo vegetarian', value: '387^Lacto-ovo vegetarian'},
     {name: 'Paleo', value: '403^Paleo'}
   ];
-  @Output() private changed = new EventEmitter();
+  @Output() changed = new EventEmitter();
 
   constructor() { }
 }

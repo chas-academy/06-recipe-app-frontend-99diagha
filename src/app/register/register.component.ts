@@ -9,13 +9,13 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-  private form = {
+  form = {
     email: null,
     name: null,
     password: null,
     password_confirmation: null
   };
-  private error = [];
+  error = [];
 
   constructor(private router: Router,
               private authService: AuthService) {
@@ -25,6 +25,7 @@ export class RegisterComponent {
     this.authService.register(this.form).subscribe(() => {
       this.router.navigate(['/login']);
     }, error => {
+      console.log(error);
       this.error = error.error.errors;
     });
   }

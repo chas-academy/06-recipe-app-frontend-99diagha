@@ -18,7 +18,7 @@ export class SavedService {
   }
 
   index(): Observable<Recipe[]> {
-    return this.http.get('http://homestead.test/api/saved', {headers: this.headers}).pipe(
+    return this.http.get('http://68.183.67.163/api/saved', {headers: this.headers}).pipe(
       map((response: any) =>
         response.map((recipe: any) =>
           new Recipe({
@@ -36,6 +36,6 @@ export class SavedService {
 
   store(recipe: Recipe) {
     const { id, name, imageUrl, source } = recipe;
-    return this.http.post('http://homestead.test/api/saved', {id, name, imageUrl, source}, {headers: this.headers});
+    return this.http.post('http://68.183.67.163/api/saved', {id, name, imageUrl, source}, {headers: this.headers});
   }
 }

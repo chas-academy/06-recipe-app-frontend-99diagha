@@ -12,8 +12,8 @@ import { SavedService } from '../services/saved.service';
   styleUrls: ['./recipe-detail.component.scss']
 })
 export class RecipeDetailComponent implements OnInit {
-  private recipe: Recipe;
-  private loggedIn: boolean;
+  recipe: Recipe;
+  loggedIn: boolean;
 
   constructor(private route: ActivatedRoute,
               private recipeService: RecipeService,
