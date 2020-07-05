@@ -18,24 +18,20 @@ export class SavedService {
   }
 
   index(): Observable<Recipe[]> {
-    return this.http.get('http://68.183.67.163/api/saved', {headers: this.headers}).pipe(
+    return this.http.get('http://localhost:8000/api/saved', {headers: this.headers}).pipe(
       map((response: any) =>
         response.map((recipe: any) =>
           new Recipe({
             id: recipe.yummly_id,
-            name: recipe.name,
-            source: {
-              displayName: recipe.source,
-              recipeUrl: ''
-            },
-            imageUrl: recipe.image
+            title: recipe.name,
+            image: recipe.image
           })
         )
       ));
   }
 
   store(recipe: Recipe) {
-    const { id, name, imageUrl, source } = recipe;
-    return this.http.post('http://68.183.67.163/api/saved', {id, name, imageUrl, source}, {headers: this.headers});
+    const { id, title, image, sourceName } = recipe;
+    return this.http.post('http://localhost:8000/api/saved', {id, title, image, sourceName}, {headers: this.headers});
   }
 }

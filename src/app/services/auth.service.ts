@@ -14,11 +14,11 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   register(data) {
-    return this.http.post('http://68.183.67.163/api/register', data);
+    return this.http.post('http://localhost:8000/api/register', data);
   }
 
   login(data) {
-    return this.http.post('http://68.183.67.163/api/login', data).pipe(
+    return this.http.post('http://localhost:8000/api/login', data).pipe(
       tap(response => {
         this.setSession(response);
         this.changeAuthStatus(true);

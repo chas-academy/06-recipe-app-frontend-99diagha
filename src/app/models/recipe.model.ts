@@ -1,14 +1,12 @@
 export class Recipe {
   id: string;
-  name: string;
-  source: {
-    displayName: string,
-    recipeUrl: string
-  };
-  imageUrl: string;
-  ingredients: [];
+  title: string;
+  image: string;
   servings: number;
-  duration: string;
+  readyInMinutes: number;
+  sourceName: string;
+  sourceUrl: string;
+  ingredients: any[];
 
   constructor(recipe: Partial<Recipe>) {
     Object.assign(this, recipe);

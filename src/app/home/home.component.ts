@@ -28,10 +28,10 @@ export class HomeComponent implements OnInit {
         this.course = payload;
         break;
       case 'allergens':
-        this.allergens = payload.join('&allowedAllergy[]=');
+        this.allergens = payload.join(',');
         break;
       case 'diets':
-        this.diets = payload.join('&allowedDiet[]=');
+        this.diets = payload.join(',');
         break;
     }
 
@@ -42,6 +42,7 @@ export class HomeComponent implements OnInit {
 
   onScroll() {
     const page = this.recipes.length + 1;
+    console.log(page)
     this.recipeService.index(page, this.course, this.allergens, this.diets).subscribe(response => {
       this.recipes = [...this.recipes, ...response];
     });

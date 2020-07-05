@@ -26,15 +26,13 @@ export class RecipeDetailComponent implements OnInit {
     this.recipeService.show(id).subscribe((response: any) => {
       this.recipe = new Recipe({
         id: response.id,
-        name: response.name,
-        source: {
-          displayName: response.source['sourceDisplayName'],
-          recipeUrl: response.source['sourceRecipeUrl']
-        },
-        imageUrl: response.images[0].hostedSmallUrl,
-        ingredients: response.ingredientLines,
-        servings: response.numberOfServings,
-        duration: response.totalTimeInSeconds
+        title: response.title,
+        image: response.image,
+        servings: response.servings,
+        readyInMinutes: response.readyInMinutes,
+        sourceName: response.sourceName,
+        sourceUrl: response.sourceUrl,
+        ingredients: response.extendedIngredients
       });
     });
 

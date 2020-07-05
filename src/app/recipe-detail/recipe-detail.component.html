@@ -1,17 +1,17 @@
 <div class="wrapper" *ngIf="recipe">
   <div class="image">
-    <img [src]="(recipe.imageUrl | slice:0:-3) + 's680-c-rj-v1-e365'" alt="">
+    <img [src]="recipe.image" [alt]="recipe.title">
   </div>
   <section class="info">
-    <h2 class="name">{{recipe.name}}</h2>
-    <p>{{recipe.source['displayName'] | uppercase}}</p>
+    <h2 class="name">{{recipe.title}}</h2>
+   <p>{{recipe.sourceName | uppercase}}</p>
     <div class="summary">
-      <div>
+    <div>
         <span class="value">{{recipe.ingredients.length}}</span>
         <span class="unit">Ingredients</span>
       </div>
       <div>
-        <span class="value">{{recipe.duration / 60}}</span>
+        <span class="value">{{recipe.readyInMinutes}}</span>
         <span class="unit">Minutes</span>
       </div>
       <div>
@@ -26,12 +26,15 @@
   <section class="ingredients">
     <h4>Ingredients</h4>
     <a class="read-directions"
-       [href]="recipe.source['recipeUrl']"
+       [href]="recipe.sourceUrl"
        target="_blank"
        rel="noopener noreferrer"
        aria-label="Read directions">Read directions</a>
     <ul>
-      <li *ngFor="let ingredient of recipe.ingredients">{{ingredient}}</li>
+      <li *ngFor="let ingredient of recipe.ingredients">
+        <span>{{ingredient.measures.us.amount}} {{ingredient.measures.us.unitShort}} </span>
+        <strong>{{ingredient.name}}</strong>
+      </li>
     </ul>
   </section>
 </div>

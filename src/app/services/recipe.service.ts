@@ -9,32 +9,22 @@ import { Recipe } from '../models/recipe.model';
   providedIn: 'root'
 })
 export class RecipeService {
-  private API_ID = '6efcda6e';
-  private API_KEY = '0351e35eebaf3d4ff16220765f73b5c8';
-  private headers;
+  private API_KEY = '942cd72adc4048ce8c9195dccf04bcae';
 
-  constructor(private http: HttpClient) {
-    this.headers = new HttpHeaders()
-      .set('X-Yummly-App-ID', this.API_ID)
-      .set('X-Yummly-App-Key', this.API_KEY);
-  }
+  constructor(private http: HttpClient) {}
 
   show(id: number): Observable<Recipe> {
-    return this.http.get<Recipe>(`http://api.yummly.com/v1/api/recipe/${id}`, {headers: this.headers});
+    return this.http.get<Recipe>(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${this.API_KEY}`);
   }
 
   index(page, course = '', allergens = '', diets = ''): Observable<Recipe[]> {
-    return this.http.get(`http://api.yummly.com/v1/api/recipes?requirePictures=true&maxResult=20&start=${page}&allowedCourse[]=${course}&allowedAllergy[]=${allergens}&allowedDiet[]=${diets}`, {headers: this.headers}).pipe(
+    return this.http.get(`https://api.spoonacular.com/recipes/complexSearch?type=${course}&intolerances=${allergens}&diet=${diets}&offset=${page}&number=20&apiKey=${this.API_KEY}`).pipe(
       map((response: any) =>
-        response.matches.map((recipe: any) =>
+        response.results.map((recipe: any) =>
           new Recipe({
             id: recipe.id,
-            name: recipe.recipeName,
-            source: {
-              displayName: recipe.sourceDisplayName,
-              recipeUrl: ''
-            },
-            imageUrl: recipe.smallImageUrls[0]
+            title: recipe.title,
+            image: recipe.image
           })
         )
       ));

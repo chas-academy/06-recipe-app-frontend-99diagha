@@ -9,31 +9,33 @@ export class FiltersComponent {
   selectedCourse = '';
   courses = [
     {name: 'All', value: ''},
-    {name: 'Appetizers', value: 'course^course-Appetizers'},
-    {name: 'Main-Dishes', value: 'course^course-Main Dishes'},
-    {name: 'Desserts', value: 'course^course-Desserts'},
+    {name: 'Appetizers', value: 'appetizer'},
+    {name: 'Main-Dishes', value: 'main course'},
+    {name: 'Breakfast', value: 'breakfast'},
+    {name: 'Desserts', value: 'dessert'},
   ];
   allergens = [
-    {name: 'Dairy-Free', value: '396^Dairy-Free'},
-    {name: 'Egg-Free', value: '397^Egg-Free'},
-    {name: 'Gluten-Free', value: '393^Gluten-Free'},
-    {name: 'Peanut-Free', value: '394^Peanut-Free'},
-    {name: 'Seafood-Free', value: '398^Seafood-Free'},
-    {name: 'Sesame-Free', value: '399^Sesame-Free'},
-    {name: 'Soy-Free', value: '400^Soy-Free'},
-    {name: 'Sulfite-Free', value: '401^Sulfite-Free'},
-    {name: 'Tree Nut-Free', value: '395^Tree Nut-Free'},
-    {name: 'Wheat-Free', value: '392^Wheat-Free'}
+    {name: 'Dairy-Free', value: 'dairy'},
+    {name: 'Egg-Free', value: 'egg'},
+    {name: 'Gluten-Free', value: 'gluten'},
+    {name: 'Peanut-Free', value: 'peanut'},
+    {name: 'Seafood-Free', value: 'seafood'},
+    {name: 'Shellfish-Free', value: 'shellfish'},
+    {name: 'Sesame-Free', value: 'sesame'},
+    {name: 'Soy-Free', value: 'soy'},
+    {name: 'Sulfite-Free', value: 'sulfite'},
+    {name: 'Tree Nut-Free', value: 'tree nut'},
+    {name: 'Wheat-Free', value: 'wheat'},
+    {name: 'Grain-Free', value: 'grain'}
   ];
   diets = [
-    {name: 'Ketogenic', value: '406^Ketogenic'},
-    {name: 'Lacto vegetarian', value: '388^Lacto vegetarian'},
-    {name: 'Ovo vegetarian', value: '389^Ovo vegetarian'},
-    {name: 'Pescetarian', value: '390^Pescetarian'},
-    {name: 'Vegan', value: '386^Vegan'},
-    {name: 'Low FODMAP', value: '408^Low FODMAP'},
-    {name: 'Lacto-ovo vegetarian', value: '387^Lacto-ovo vegetarian'},
-    {name: 'Paleo', value: '403^Paleo'}
+    {name: 'Ketogenic', value: 'ketogenic'},
+    {name: 'Lacto vegetarian', value: 'lacto-vegetarian'},
+    {name: 'Ovo vegetarian', value: 'ovo-vegetarian'},
+    {name: 'Pescetarian', value: 'pescetarian'},
+    {name: 'Vegan', value: 'vegan'},
+    {name: 'Primal', value: 'primal'},
+    {name: 'Paleo', value: 'paleo'}
   ];
   @Output() changed = new EventEmitter();
 
